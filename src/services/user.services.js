@@ -10,9 +10,10 @@ class UserService {
    */
   async getUserList() {
     try {
-      const query = "SELECT * FROM users";
-      const [rows] = await this.db.query(query);
-      return rows;
+      const query = "SELECT * FROM users;";
+      const rows = await this.db.query(query);
+
+      return rows[0];
     } catch (error) {
       console.error("Error fetching user list:", error.message);
       throw new Error("Could not fetch users");

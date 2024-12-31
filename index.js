@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
-
+const routes = require("./src/routes/index")
 const app = express();
 
 const limiter = rateLimit({
@@ -10,6 +10,8 @@ const limiter = rateLimit({
   max: 100,
 });
 const PORT = 8080;
+
+app.use('/v1', routes)
 
 app.use(limiter);
 app.use(helmet());
